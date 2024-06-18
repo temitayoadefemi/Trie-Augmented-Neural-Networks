@@ -17,3 +17,11 @@ class Trie():
         root.left_child = self.build_trie(current_depth - 1)
         root.right_child = self.build_trie(current_depth - 1)
         return root
+    
+    def traverse_nodes(self, node):
+        nodes = []
+        if node is None:
+            return nodes
+        nodes.append(node.neural_network)
+        nodes.extend(self.traverse_nodes(node.left_child))
+        nodes.extend(self.traverse_nodes(node.right_child))
