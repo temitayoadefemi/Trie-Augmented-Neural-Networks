@@ -30,30 +30,6 @@ class TrieNetwork:
             raise ValueError("Unsupported framework")
 
     # JAX initialization
-    def init_jax_model(self):
-        self.key = random.PRNGKey(0)
-        self.w1 = random.normal(self.key, (self.input_size, self.hidden_size))
-        self.b1 = jnp.zeros(self.hidden_size)
-        self.w2 = random.normal(self.key, (self.hidden_size, self.output_size))
-        self.b2 = jnp.zeros(self.output_size)
-
-    # TensorFlow initialization
-    def init_tf_model(self):
-        self.model = keras.Sequential([
-            layers.Dense(self.hidden_size, activation='relu', input_shape=(self.input_size,)),
-            layers.Dense(self.output_size)
-        ])
-        self.model.compile(optimizer='adam', loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
-
-    # PyTorch initialization
-    def init_torch_model(self):
-        self.model = nn.Sequential(
-            nn.Linear(self.input_size, self.hidden_size),
-            nn.ReLU(),
-            nn.Linear(self.hidden_size, self.output_size)
-        )
-        self.loss_fn = nn.CrossEntropyLoss()
-        self.optimizer = optim.Adam(self.model.parameters(), lr=0.001)
 
     # Training
     def train(self, X_train, y_train, epochs=10, batch_size=32):
