@@ -12,8 +12,3 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
-fr
-class TrieNetwork:
-    def __init__(self, framework='pytorch', input_size=784, hidden_size=128, output_size=10):
-        self.
-        
