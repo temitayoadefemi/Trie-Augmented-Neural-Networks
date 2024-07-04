@@ -6,6 +6,7 @@ class Trie():
         self.neural_network = neural_network
         self.depth = depth
         self.default_network = neural_network  # Default neural network used to populate the Trie.
+        
 
     def build_trie(self, current_depth=None):
         # Recursively build the Trie structure up to the specified depth.
@@ -15,10 +16,10 @@ class Trie():
         if current_depth == 0:
             return None  # Base case: no more depth to build, return None.
 
-        root = TrieNode(self.default_network)  # Create a new Trie node with the default network.
-        root.left_child = self.build_trie(current_depth - 1)  # Recursively build the left child.
-        root.right_child = self.build_trie(current_depth - 1)  # Recursively build the right child.
-        return root  # Return the root of this sub-trie.
+        self.root = TrieNode(self.default_network)  # Create a new Trie node with the default network.
+        self.root.left_child = self.build_trie(current_depth - 1)  # Recursively build the left child.
+        self.root.right_child = self.build_trie(current_depth - 1)  # Recursively build the right child.
+        return self.root  # Return the root of this sub-trie.
     
     def traverse_nodes(self, node):
         # Traverse the Trie and collect all neural networks from the nodes.
