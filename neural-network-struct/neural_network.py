@@ -1,14 +1,9 @@
-import numpy as np
-import jax
-import jax.numpy as jnp
-from jax import grad, jit, vmap
-from jax import random
+from library_wrapper.wrapper import Wrapper
 
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
+class TrieNetwork():
+    def __init__(self, library, input_size, hidden_size, output_size):
+        self.wrapper = Wrapper(library=library, input_size=input_size, hidden_size=hidden_size, output_size=output_size)
 
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset
+
+    def init_default_model(self):
+        return self.wrapper.init_default_model()
