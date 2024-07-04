@@ -10,6 +10,8 @@ class TANN():
 
     def train(self):
         # Placeholder for the train method, which should be implemented to train the model.
+        optimizers = []
+        nodes = self.trie.traverse_nodes()
         pass
 
     def inference(self):
