@@ -7,6 +7,7 @@ class TANN():
         # If no node or trie is provided, new instances of TrieNode and Trie will be created.
         self.trie = trie if trie is not None else Trie()
         self.training_criteria = None
+        
 
     def train(self, train_data, epochs, lr):
         # Placeholder for the train method, which should be implemented to train the model.
@@ -37,15 +38,16 @@ class TANN():
             print(f"Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}")
 
     def inference(self):
-        # Placeholder for the inference method, which should be implemented to process new data.
-        pass
+        inputs = tensor(inputs, dtype=torch.float32)
+        node = self.trie.root
+
+        #Implement inference criteria
+
+        output = node.mini_nn(inputs)
+        return output.item()
 
     def classification_report(self):
         # Placeholder for the classification_report method, which should generate a report 
         # summarizing the performance of the model after training.
         pass
 
-    def traverse_tann(self):
-        # Method to traverse the Trie Augmented Neural Network starting from the initial node.
-        # It should return the traversal path or result of the operation.
-        return self.trie.traverse_nodes(self, self.node)
