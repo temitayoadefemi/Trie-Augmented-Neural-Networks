@@ -7,6 +7,8 @@ class Wrapper:
         self.output_size = output_size
         self.model_type = model_type
         self.model = None
+        self.criterion = None
+
 
     def init_default_model(self):
         if self.library == "jax":
@@ -78,3 +80,13 @@ class Wrapper:
             )
         self.loss_fn = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(self.model.parameters(), lr=0.001)
+
+
+    def get_criterion(self):
+        return self.loss_fn
+    
+    
+    def get_optimizer(self):
+        return self.optimizer
+
+
