@@ -9,3 +9,6 @@ class TrieNetwork():
     
     def get_criterion(self):
         return self.wrapper.get_criterion()
+    
+    def library(self):
+        return self.wrapper.library
