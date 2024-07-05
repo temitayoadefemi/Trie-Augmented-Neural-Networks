@@ -1,11 +1,10 @@
 from node import TrieNode
 
 class Trie():
-    def __init__(self, neural_network=None, depth=1):
+    def __init__(self, trie_network=None, depth=1):
         # Initialize the Trie with a neural network and a specified depth.
-        self.neural_network = neural_network
+        self.trie_network = trie_network
         self.depth = depth
-        self.default_network = neural_network  # Default neural network used to populate the Trie.
         
 
     def build_trie(self, current_depth=None):
