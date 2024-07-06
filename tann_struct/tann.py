@@ -12,7 +12,7 @@ class TANN():
     def train(self, train_data, epochs, lr):
         # Placeholder for the train method, which should be implemented to train the model.
         optimizers = []
-        nodes = self.trie.traverse_nodes(self.trie.root)
+        nodes = self.trie.traverse_nodes()
         for node in nodes:
             optimizer = self.trie.network.wrapper.get_optimizer(node.trie_network.parameters())
             optimizers.append(optimizer)
