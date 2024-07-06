@@ -30,5 +30,16 @@ class Tensor:
         elif self.backend == 'tensorflow':
             return Tensor(self.data * other.data, backend='tensorflow')
 
+    def __getitem__(self, index):
+        if self.backend == 'pytorch':
+            return self.data[index]
+        elif self.backend == 'jax':
+            return self.data[index]
+        elif self.backend == 'tensorflow':
+            return self.data.numpy()[index]  # TensorFlow tensors are not directly indexable without converting to numpy
+
     def __repr__(self):
         return self.data.__repr__()
+
+    def __len__(self):
+        return len(self.data)
