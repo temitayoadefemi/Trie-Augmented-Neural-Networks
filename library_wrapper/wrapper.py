@@ -78,16 +78,16 @@ class Wrapper:
                 nn.Flatten(),
                 nn.Linear(self.hidden_size * ((self.input_size - 2) ** 2), self.output_size)
             )
-        self.loss_fn = nn.CrossEntropyLoss()
+        self.loss_fn = nn.BCELoss()
         self.optimizer = optim.Adam(self.model.parameters(), lr=0.001)
 
 
-    def get_criterion(self):
-        return self.loss_fn
+    def get_loss(self, output, target):
+        return self.loss_fn(output, target)
     
     
-    def get_optimizer(self):
-        return self.optimizer
+    def get_optimizer(self, parameters):
+        return self.optimizer(parameters)
     
 
     def default_model(self):

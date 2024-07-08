@@ -1,5 +1,7 @@
 from .trie import Trie
 from misc.tensor import Tensor
+import torch.optim as optim
+import torch
 
 class TANN():
     def __init__(self, trie=None):
@@ -14,13 +16,13 @@ class TANN():
         optimizers = []
         nodes = self.trie.traverse_nodes()
         for node in nodes:
-            optimizer = self.trie.network.wrapper.get_optimizer(self.trie.network.default_model().parameters)
+            optimizer = optim.Adam(self.trie.network.default_model().parameters(), lr)
             optimizers.append(optimizer)
         
         for epoch in range(epochs):
             for inputs, target in train_data:
-                inputs = Tensor(inputs, backend="pytorch")
-                target = Tensor([target], backend="pytorch")
+                inputs = torch.tensor(inputs, dtype=torch.float32)
+                target = torch.tensor([target], dtype=torch.float32)
 
             node = self.trie.root
             for i in range(len(inputs)):
@@ -28,8 +30,8 @@ class TANN():
                     node = node.left_child
                 else:
                     node = node.right_child
-            output = node.trie_network(inputs)
-            loss = self.node.trie_network.get_criterion(output, target)
+            output = self.trie.network.collect_inputs(inputs)
+            loss = self.trie.network.wrapper.get_loss(output, target)
 
             for optimizer in optimizers:
                 optimizer.zero_grad()
@@ -38,6 +40,7 @@ class TANN():
                 optimizer.step()
 
             print(f"Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}")
+
 
     def inference(self):
         inputs = Tensor(inputs, backend=self.trie.network.library)

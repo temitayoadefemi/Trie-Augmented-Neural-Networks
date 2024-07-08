@@ -10,5 +10,8 @@ class TrieNetwork():
     def get_criterion(self):
         return self.wrapper.get_criterion()
     
+    def collect_inputs(self, inputs):
+        return self.wrapper.model(inputs)
+    
     def library(self):
         return self.wrapper.library
