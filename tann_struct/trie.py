@@ -1,19 +1,20 @@
-
-
+from tann_struct.node import TrieNode
 
 class Trie:
-    def __init__(self, depth=1, node = None):
+    def __init__(self, depth=1, trie_network=None, feature_value=None):
         self.depth = depth
-        self.root = self.build_trie(depth)
-        self.node = node
+        self.root = self.build_trie(depth, trie_network, feature_value)
+        self.network = trie_network
+        self.feature_value = feature_value
 
 
-    def build_trie(self, current_depth):
+    def build_trie(self, current_depth, network, feature_value):
         if current_depth == 0:
             return None
-        self.node.left_child = self.build_trie(current_depth - 1)
-        self.node.right_child = self.build_trie(current_depth - 1)
-        return self.node
+        node = TrieNode(trie_network=network, feature_value=feature_value)
+        node.left_child = self.build_trie(current_depth - 1, network, feature_value)
+        node.right_child = self.build_trie(current_depth - 1, network, feature_value)
+        return node
     
 
     def traverse_nodes(self):
