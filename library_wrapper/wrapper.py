@@ -88,5 +88,9 @@ class Wrapper:
     
     def get_optimizer(self):
         return self.optimizer
+    
+
+    def default_model(self):
+        return self.init_default_model()
 
 
