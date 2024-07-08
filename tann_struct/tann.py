@@ -14,7 +14,7 @@ class TANN():
         optimizers = []
         nodes = self.trie.traverse_nodes()
         for node in nodes:
-            optimizer = self.trie.network.wrapper.get_optimizer(node.trie_network.parameters())
+            optimizer = self.trie.network.wrapper.get_optimizer(self.trie.network.default_model().parameters)
             optimizers.append(optimizer)
         
         for epoch in range(epochs):
